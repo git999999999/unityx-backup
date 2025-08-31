@@ -1,3 +1,8 @@
+cat > Dockerfile <<'EOF'
 FROM postgres:15
-RUN apt-get update && apt-get install -y python3-pip && pip3 install awscli && rm -rf /var/lib/apt/lists/*
+
+# Install awscli from Debian repos (no pip)
+RUN apt-get update && apt-get install -y awscli && rm -rf /var/lib/apt/lists/*
+
 ENTRYPOINT ["sh", "-c"]
+EOF
